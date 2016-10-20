@@ -79,6 +79,7 @@ namespace MinimercadoAlfredo.Controllers
         [HttpPost]
         public JsonResult CreateSale(SaleVM O)
         {
+            //CustomerName contiene el id del cliente
             bool status = false;
             Sale sale = new Sale();
             var cusid = Int32.Parse(O.CustomerName);
@@ -86,8 +87,7 @@ namespace MinimercadoAlfredo.Controllers
 
             if (ModelState.IsValid)
             {
-                using (AlfredoContext dc = new AlfredoContext())
-                {
+               
                     sale.SaleDate = O.SaleDate;
                     sale.SaleAddress = O.SaleAddress;
                     sale.Comments = O.Comments;
@@ -110,7 +110,7 @@ namespace MinimercadoAlfredo.Controllers
 
                     }
                     status = true;
-                }
+                
             }
             else
             {
