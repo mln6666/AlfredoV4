@@ -39,11 +39,11 @@
         <div class="form-group">
             <div class="col-md-2"></div>
             <div class="col-md-4">
-                @Html.LabelFor(model => model.ArticleNumber, htmlAttributes: new { @class = "control-label" })
+                @Html.LabelFor(model => model.ProductNumber, htmlAttributes: new { @class = "control-label" })
             </div>
             <div class="col-md-5">
-                @Html.EditorFor(model => model.ArticleNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ArticleNumber, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ProductNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -113,22 +113,22 @@
             </div>
         </div>
 
-        @if (Model.State == true)
+        @if (Model.ProductState == true)
         {
             <div class="form-group">
                 <div class="col-md-2"></div>
 
                 <div class="col-md-4">
-                    @Html.LabelFor(model => model.State, "Estado", htmlAttributes: new { @class = "control-label", @Style = "text-align: left" })
+                    @Html.LabelFor(model => model.ProductState, "Estado", htmlAttributes: new { @class = "control-label", @Style = "text-align: left" })
                 </div>
                 <div class="radio col-md-5">
                     <label>
-                        <input name="State" id="optionsRadios1" value="true" checked="" type="radio">
+                        <input name="ProductState" id="optionsRadios1" value="true" checked="" type="radio">
                         Activo
                     </label>
                     <label>  </label>
                     <label>
-                        <input name="State" id="optionsRadios2" value="false" type="radio">
+                        <input name="ProductState" id="optionsRadios2" value="false" type="radio">
                         Desactivado
                     </label>
                 </div>
@@ -142,16 +142,16 @@
                 <div class="col-md-2"></div>
 
                 <div class="col-md-4">
-                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label", @Style = "text-align: left" })
+                    @Html.LabelFor(model => model.ProductState, htmlAttributes: new { @class = "control-label", @Style = "text-align: left" })
                 </div>
                 <div class="radio col-md-5">
                     <label>
-                        <input name="State" id="optionsRadios1" value="true" type="radio">
+                        <input name="ProductState" id="optionsRadios1" value="true" type="radio">
                         Activo
                     </label>
                     <label>  </label>
                     <label>
-                        <input name="State" id="optionsRadios2" value="false" checked="" type="radio">
+                        <input name="ProductState" id="optionsRadios2" value="false" checked="" type="radio">
                         Desactivado
                     </label>
                 </div>

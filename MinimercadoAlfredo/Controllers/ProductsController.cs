@@ -19,7 +19,7 @@ namespace MinimercadoAlfredo.Controllers
         public ActionResult Index()
         {
             var products = (from p in db.Products
-                            where p.State == true
+                            where p.ProductState == true
                             select p);
 
             return View(products.ToList());
@@ -37,7 +37,7 @@ namespace MinimercadoAlfredo.Controllers
         public ActionResult OffProducts()
         {
             var products = (from p in db.Products
-                        where p.State == false
+                        where p.ProductState == false
                         select p);
 
             return View(products.ToList());
@@ -92,7 +92,7 @@ namespace MinimercadoAlfredo.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduct,ProductDescription,ArticleNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,State,Image,idCategory")] Product product)
+        public ActionResult Create([Bind(Include = "IdProduct,ProductDescription,ProductNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,State,Image,idCategory")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -114,13 +114,13 @@ namespace MinimercadoAlfredo.Controllers
 
             if (ModelState.IsValid)
             {
-                if (prod.State == true)
+                if (prod.ProductState)
                 {
-                    prod.State = false;
+                    prod.ProductState = false;
                 }
                 else
                 {
-                    prod.State = true;
+                    prod.ProductState = true;
                 }
                 db.Entry(prod).State = EntityState.Modified;
                 db.SaveChanges();
@@ -150,7 +150,7 @@ namespace MinimercadoAlfredo.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,ProductDescription,ArticleNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,State,Image,idCategory")] Product product)
+        public ActionResult Edit([Bind(Include = "IdProduct,ProductDescription,ProductNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,State,Image,idCategory")] Product product)
         {
             if (ModelState.IsValid)
             {

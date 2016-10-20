@@ -17,7 +17,7 @@ namespace MinimercadoAlfredo.Models
 
         [Required]
         [Display(Name = "Número de Artículo")]
-        public int ArticleNumber { get; set; }
+        public int ProductNumber { get; set; }
 
         [Display(Name = "Costo")]
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
@@ -43,7 +43,7 @@ namespace MinimercadoAlfredo.Models
         [Display(Name = "Stock mínimo")]
         public decimal? Minimum { get; set; }
 
-        public bool State { get; set; }
+        public bool ProductState { get; set; }
 
         public string Image { get; set; }
 
