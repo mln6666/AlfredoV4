@@ -16,48 +16,39 @@ namespace MinimercadoAlfredo.Controllers
         private AlfredoContext db = new AlfredoContext();
 
         // GET: Products
-        public ActionResult Index(int? lista)
+        public ActionResult Index()
         {
-            IEnumerable<Product> products;
-
-
-
-            if (lista == 1)
-            {
-                products = (from p in db.Products
-                            where p.State == false
+            var products = (from p in db.Products
+                            where p.State == true
                             select p);
 
-                return View("OffProducts", products.ToList());
-            }
-            else
-            {
-                if (lista == 2)
-                {
-                    products = db.Products.Include(p => p.Category);
+            return View(products.ToList());
+        }
 
-                    return View("Record", products.ToList());
-                }
-                else
-                {
-                    if (lista == 3)
-                    {
-                        products = (from p in db.Products
-                                        where p.Stock <= p.Minimum
-                                        select p);
+        public ActionResult Minimum()
+        {
+            var products = (from p in db.Products
+                        where p.Stock <= p.Minimum
+                        select p);
 
-                        return View("Minimum", products.ToList());
-                    }else
-                    {
+            return View(products.ToList());
+        }
 
-                        products = db.Products.ToList();
+        public ActionResult OffProducts()
+        {
+            var products = (from p in db.Products
+                        where p.State == false
+                        select p);
 
-                        return View(products);
-                    }
-                }
-            }
-            
-        }        
+            return View(products.ToList());
+        }
+
+        public ActionResult Record()
+        {
+            var products = db.Products.Include(p => p.Category);
+
+            return View(products.ToList());
+        }
 
         //GET
         public ActionResult Deactivate(int? id)
@@ -125,13 +116,11 @@ namespace MinimercadoAlfredo.Controllers
             {
                 if (prod.State == true)
                 {
-                    prod.State = false;                    
-                    ViewBag.Success = "El Producto se ha desactivado correctamente";
+                    prod.State = false;
                 }
                 else
                 {
-                    prod.State = true;                    
-                    ViewBag.Success = "El Producto se ha activado correctamente";
+                    prod.State = true;
                 }
                 db.Entry(prod).State = EntityState.Modified;
                 db.SaveChanges();
