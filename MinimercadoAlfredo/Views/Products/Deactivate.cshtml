@@ -8,7 +8,7 @@
     <script type="text/javascript"> var id = null; function openWindow() { var pnl = $get("pnl"); if (pnl != null) { pnl.style.left = "50px"; pnl.style.top = "50px"; id = setTimeout("movePanel();", 100); } } </script>
 </head>
 
-@if (Model.State == true)
+@if (Model.ProductState == true)
 {
     <h5 class="text-center">Desactivar este Producto hará que deje de figurar en la Lista de Productos Activos</h5>
 }

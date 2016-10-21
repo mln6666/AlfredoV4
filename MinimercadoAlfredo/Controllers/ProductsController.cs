@@ -92,7 +92,7 @@ namespace MinimercadoAlfredo.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduct,ProductDescription,ProductNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,State,Image,idCategory")] Product product)
+        public ActionResult Create([Bind(Include = "IdProduct,ProductDescription,ProductNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,ProductState,Image,idCategory")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -150,7 +150,7 @@ namespace MinimercadoAlfredo.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,ProductDescription,ProductNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,State,Image,idCategory")] Product product)
+        public ActionResult Edit([Bind(Include = "IdProduct,ProductDescription,ProductNumber,Cost,WholeSalePrice,PublicPrice,UploadDate,Stock,Minimum,ProductState,Image,idCategory")] Product product)
         {
             if (ModelState.IsValid)
             {

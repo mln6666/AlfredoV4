@@ -1,0 +1,103 @@
+﻿@model MinimercadoAlfredo.ViewModels.PurchaseVM
+@{
+    ViewBag.Title = "CreatePurchase";
+}
+
+<h2 class="text-center">Nueva Compra</h2>
+<hr style="color:grey;border-color:grey" />
+
+<h3 class="text-center">Datos Generales</h3>
+<br />
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr class="text-center" style="color:white; background-color:#4d77a3">
+            <th width="310px">
+                Proveedor
+            </th>
+            <th width="200px">
+                Fecha de Adquisición
+            </th>
+            <th>
+                Comentarios
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <select class="js-example-basic-single" id="providername" style="font:small-caption; width: 250px; height: 25px;">
+                    <option value="0">Seleccione un Proveedor</option>
+                    @foreach (var item in ViewBag.Providers)
+                    {
+                        <option value="@item.IdProvider">@item.ProviderName</option>
+                    }
+                </select>
+                <a href="" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            </td>
+            <td>
+                <input type="date" class="panel-info" id="purchasedate" placeholder="dd/mm/aaaa" />
+                @*<span class="error">saledate required</span>*@
+            </td>
+            <td>
+                <input type="text" id="purchasecomments" placeholder="Ingrese un comentario" size="600"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 class="text-center">Productos Adquiridos</h3>
+<hr style="color:grey;border-color:grey" />
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr style="color:white; background-color:#4d77a3">
+            <td>Producto</td>
+            <td>Costo de Adquisición</td>
+            <td>Cantidad Adquirida</td>
+            <td>Importe total de Compra</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <select class="js-example-basic-single" id="productname" style="font:small-caption; width: 400px; height: 25px;">
+                    <option value="0">Seleccione un Producto</option>
+                    @foreach (var item in ViewBag.Products)
+                    {
+                        <option value="@item.IdProduct">@item.ProductNumber - @item.ProductDescription</option>
+                    }
+                </select>
+                <a href="" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            </td>
+            <td>                
+                <input type="number"/>
+            </td>
+            <td>
+                <input type="number" />
+            </td>
+            <td>
+                <input type="number" />
+            </td>
+            <td>
+                <input type="button" id="add" value="Agregar" class="btn btn-success btn-sm" style="bottom:auto"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+    <link href="@Url.Content("~/Content/Select2/select2.min.css")" rel="stylesheet" />
+    @section scripts
+{
+        <script src="@Url.Content("~/Content/Select2/select2.js")"></script>
+        <script>
+            $(document).ready(function () {
+                $(".js-example-basic-single").select2();
+            });
+        </script>
+    }
+
+

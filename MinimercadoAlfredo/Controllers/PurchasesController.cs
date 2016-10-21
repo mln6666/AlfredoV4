@@ -40,8 +40,9 @@ namespace MinimercadoAlfredo.Controllers
         // GET: Purchases/Create
         public ActionResult Create()
         {
-            ViewBag.idProvider = new SelectList(db.Providers.OrderBy(p => p.ProviderName), "idProvider", "ProviderName");
-            return View();
+            ViewBag.Providers = db.Providers.ToList().OrderBy(p => p.ProviderName);
+            ViewBag.Products = db.Products.ToList().OrderBy(p => p.ProductDescription);
+            return View("CreatePurchase");
         }
 
         // POST: Purchases/Create
