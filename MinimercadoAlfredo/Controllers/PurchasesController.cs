@@ -63,7 +63,27 @@ namespace MinimercadoAlfredo.Controllers
             ViewBag.IdProvider = new SelectList(db.Providers, "IdProvider", "ProviderName", purchase.IdProvider);
             return View(purchase);
         }
+        public JsonResult Getproductdata(string pro)
+        {
+            AlfredoContext db = new AlfredoContext();
+            //IEnumerable<int> query = (from c in db.Products
+            //                          where c.ProductDescription == pro
+            //                          select c.IdProduct);
 
+
+            //int id = query.ElementAt(0);
+            //Product productdata = db.Products.Find(id);
+
+            var proid = Int32.Parse(pro);
+
+
+            Product productdata = db.Products.ToList().Find(u => u.IdProduct == proid);
+
+
+            var midato = productdata.Cost.ToString();
+
+            return Json(midato, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult CreatePurchase()
         {
             ViewBag.Providers = db.Providers.ToList();

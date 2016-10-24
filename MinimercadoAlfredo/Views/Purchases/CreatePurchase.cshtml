@@ -242,7 +242,7 @@
             $("#linedescription").change(function() {
 
                 var options = {};
-                options.url = "/Sales/Getproductdata";
+                options.url = "/Purchases/Getproductdata";
                 options.type = "GET";
                 options.data = { "pro": $("#linedescription").val() };
                 options.dataType = "json";
