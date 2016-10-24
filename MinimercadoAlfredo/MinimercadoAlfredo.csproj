@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProvidersController.cs" />
+    <Compile Include="Controllers\PurchaseLinesController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\SaleLinesController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
@@ -652,6 +653,11 @@
     <Content Include="Views\SaleLines\Edit.cshtml" />
     <Content Include="Views\SaleLines\Index.cshtml" />
     <Content Include="Views\Purchases\CreatePurchase.cshtml" />
+    <Content Include="Views\PurchaseLines\Create.cshtml" />
+    <Content Include="Views\PurchaseLines\Delete.cshtml" />
+    <Content Include="Views\PurchaseLines\Details.cshtml" />
+    <Content Include="Views\PurchaseLines\Edit.cshtml" />
+    <Content Include="Views\PurchaseLines\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

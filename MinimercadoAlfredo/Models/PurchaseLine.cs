@@ -11,9 +11,13 @@ namespace MinimercadoAlfredo.Models
         [Key]
         public int IdPurchaseLine { get; set; }
 
-        public decimal PurchaseQuantity { get; set; }
+        public int IdProduct { get; set; } //Clave Foránea Producto
 
-        public decimal Cost { get; set; }
+        public virtual Product Product { get; set; }
+
+        public decimal LinePrice { get; set; }
+
+        public int LineQuantity { get; set; }
 
         public decimal LineTotal { get; set; }
 
@@ -21,8 +25,6 @@ namespace MinimercadoAlfredo.Models
 
         public virtual Purchase Purchase { get; set; }
 
-        public int IdProduct { get; set; } //Clave Foránea de Producto
-
-        public virtual Product Product { get; set; }
+       
     }
 }

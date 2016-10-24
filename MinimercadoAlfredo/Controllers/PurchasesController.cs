@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MinimercadoAlfredo.Context;
 using MinimercadoAlfredo.Models;
+using MinimercadoAlfredo.ViewModels;
 
 namespace MinimercadoAlfredo.Controllers
 {
@@ -62,6 +63,61 @@ namespace MinimercadoAlfredo.Controllers
             ViewBag.IdProvider = new SelectList(db.Providers, "IdProvider", "ProviderName", purchase.IdProvider);
             return View(purchase);
         }
+
+        public ActionResult CreatePurchase()
+        {
+            ViewBag.Providers = db.Providers.ToList();
+            ViewBag.Products = db.Products.ToList();
+            var npurchase = db.Purchases.ToList().Count();
+
+            ViewBag.npurchase = npurchase + 1;
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult CreatePurchase(PurchaseVM O)
+        {
+            //ProviderName contiene el id del proveedor
+            bool status = false;
+            Purchase purchase = new Purchase();
+            var proid = Int32.Parse(O.ProviderName);
+
+
+            if (ModelState.IsValid)
+            {
+
+                purchase.PurchaseDate = O.PurchaseDate;
+             
+                purchase.Comments = O.Comments;
+                purchase.PurchaseTotal = O.PurchaseTotal;
+                purchase.IdProvider = proid;
+                db.Purchases.Add(purchase);
+                db.SaveChanges();
+
+                foreach (var i in O.PurchaseLines)
+                {
+                    PurchaseLine purchaseline = new PurchaseLine();
+                    purchaseline.IdProduct = i.IdProduct;
+                    purchaseline.LinePrice = i.LinePrice;
+                    purchaseline.LineQuantity = i.LineQuantity;
+                    purchaseline.LineTotal = i.LineTotal;
+                    purchaseline.IdPurchase = purchase.IdPurchase;
+                    db.PurchaseLines.Add(purchaseline);
+                    db.SaveChanges();
+
+                }
+                status = true;
+
+            }
+            else
+            {
+                status = false;
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
 
         // GET: Purchases/Edit/5
         public ActionResult Edit(int? id)
