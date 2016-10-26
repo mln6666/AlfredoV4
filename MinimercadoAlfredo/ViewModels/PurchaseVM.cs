@@ -14,7 +14,7 @@ namespace MinimercadoAlfredo.ViewModels
 
         public DateTime PurchaseDate { get; set; }
 
-        public List<SaleLine> PurchaseLines { get; set; }
+        public List<PurchaseLine> PurchaseLines { get; set; }
 
         public decimal? PurchaseTotal { get; set; }
 

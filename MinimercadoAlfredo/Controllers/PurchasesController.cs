@@ -65,6 +65,12 @@ namespace MinimercadoAlfredo.Controllers
         }
         public JsonResult Getproductdata(string pro)
         {
+            var cero = 0;
+            if (pro == "0")
+            {
+
+                return Json(cero, JsonRequestBehavior.AllowGet);
+            }
             AlfredoContext db = new AlfredoContext();
             //IEnumerable<int> query = (from c in db.Products
             //                          where c.ProductDescription == pro

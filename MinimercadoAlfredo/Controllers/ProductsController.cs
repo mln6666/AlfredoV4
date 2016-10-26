@@ -96,6 +96,7 @@ namespace MinimercadoAlfredo.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.ParcialStock = product.Stock;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");

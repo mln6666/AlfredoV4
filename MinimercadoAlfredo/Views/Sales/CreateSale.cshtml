@@ -127,7 +127,7 @@
                     <div class="col-md-2" align="center">
                         @* <input type="text" class="panel-info" style="width: 130px;height:25px;" id="linedescription" />*@
                         <select class="js-example-basic-single" id="linedescription" style="font: small-caption; width: 200px; height: 25px; background-color: beige;" onchange="javacript: var valor = this.options[selectedIndex].text; document.getElementById('shadow').value = valor;">
-                            <option value="">Seleccionar Producto...</option>
+                            <option value="0">Seleccionar Producto...</option>
                             @foreach (var item in ViewBag.Products)
                             {
                                 <option value="@item.IdProduct">@item.ProductDescription</option>
@@ -367,7 +367,7 @@
                 });
 
                     //Clear fields
-                    $('#linedescription').val('').focus();
+                    $(document).find('#linedescription').select2();
                     $('#lineprice,#linediscount,#linequantity,#linetotal').val('');
 
                 }
@@ -494,11 +494,14 @@
 
                         });
                         $row.append($('<div class="col-md-1" style="font-weight: bold;border-style: outset;border-color:#CEECF5;border-width:2px;background-color:#F2F3A6;border-radius: 4px;"></div>').html($remove));
+
                         $tbody.append($row);
                     });
 
                     $table.append($tbody);
                     $('#orderItems').html($table);
+                } else {
+                    $('#orderItems').html('');
                 }
             }
         });

@@ -25,10 +25,7 @@ namespace MinimercadoAlfredo.Controllers
 
         public JsonResult Getcustomerdata(string cus)
         {
-            var cusid = Int32.Parse(cus);
-            AlfredoContext db = new AlfredoContext();
-            Customer customerdata = db.Customers.ToList().Find(u => u.IdCustomer == cusid);
-            if (customerdata == null)
+            if (cus == "0")
             {
                 Customer customerdata2 = new Customer();
                 customerdata2.CustomerAddress = "XXXXXXXXXX";
@@ -36,12 +33,22 @@ namespace MinimercadoAlfredo.Controllers
                 return Json(customerdata2, JsonRequestBehavior.AllowGet);
 
             }
+            var cusid = Int32.Parse(cus);
+            AlfredoContext db = new AlfredoContext();
+            Customer customerdata = db.Customers.ToList().Find(u => u.IdCustomer == cusid);
+           
 
             return Json(customerdata, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Getproductdata(string pro)
         {
+            var cero = 0;
+            if (pro == "0")
+            {
+                
+                return Json(cero, JsonRequestBehavior.AllowGet);
+            }
             AlfredoContext db = new AlfredoContext();
             //IEnumerable<int> query = (from c in db.Products
             //                          where c.ProductDescription == pro
@@ -62,7 +69,8 @@ namespace MinimercadoAlfredo.Controllers
             return Json(midato, JsonRequestBehavior.AllowGet);
         }
 
-
+        //Vista de ventas Mayoristas, el precio que se carga por defecto en los productos//
+        //es el precio mayorista, aunque se lo puede cambiar en la vista.//
         public ActionResult CreateSale()
         {
             ViewBag.Customers = db.Customers.ToList();
@@ -108,7 +116,14 @@ namespace MinimercadoAlfredo.Controllers
                         db.SaleLines.Add(saleline);
                         db.SaveChanges();
 
-                    }
+                    Product prod = new Product();
+                    prod = db.Products.Find(i.IdProduct);
+                    prod.ParcialStock = prod.ParcialStock - i.LineQuantity;
+                    db.Entry(prod).State = EntityState.Modified;
+                    db.SaveChanges();
+
+
+                }
                     status = true;
                 
             }
