@@ -15,7 +15,7 @@ namespace MinimercadoAlfredo.Models
 
         public virtual Product Product { get; set; }
 
-        public decimal LinePrice { get; set; }
+        public decimal LineCost { get; set; }
 
         public int LineQuantity { get; set; }
 

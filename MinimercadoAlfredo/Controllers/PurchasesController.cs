@@ -20,7 +20,7 @@ namespace MinimercadoAlfredo.Controllers
         public ActionResult Index()
         {
             var purchases = db.Purchases.Include(p => p.Provider);
-            return View(purchases.ToList().OrderByDescending(p => p.PurchaseDate));
+            return View(purchases.ToList());
         }
 
         // GET: Purchases/Details/5
@@ -49,20 +49,20 @@ namespace MinimercadoAlfredo.Controllers
         // POST: Purchases/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPurchase,PurchaseDate,Comments,PurchaseTotal,IdProvider")] Purchase purchase)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Purchases.Add(purchase);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "IdPurchase,PurchaseDate,Comments,PurchaseTotal,IdProvider")] Purchase purchase)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Purchases.Add(purchase);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.IdProvider = new SelectList(db.Providers, "IdProvider", "ProviderName", purchase.IdProvider);
-            return View(purchase);
-        }
+        //    ViewBag.IdProvider = new SelectList(db.Providers, "IdProvider", "ProviderName", purchase.IdProvider);
+        //    return View(purchase);
+        //}
         public JsonResult Getproductdata(string pro)
         {
             var cero = 0;
@@ -113,9 +113,7 @@ namespace MinimercadoAlfredo.Controllers
 
             if (ModelState.IsValid)
             {
-
-                purchase.PurchaseDate = O.PurchaseDate;
-             
+                purchase.PurchaseDate = O.PurchaseDate;             
                 purchase.Comments = O.Comments;
                 purchase.PurchaseTotal = O.PurchaseTotal;
                 purchase.IdProvider = proid;
@@ -126,7 +124,7 @@ namespace MinimercadoAlfredo.Controllers
                 {
                     PurchaseLine purchaseline = new PurchaseLine();
                     purchaseline.IdProduct = i.IdProduct;
-                    purchaseline.LinePrice = i.LinePrice;
+                    purchaseline.LineCost = i.LineCost;
                     purchaseline.LineQuantity = i.LineQuantity;
                     purchaseline.LineTotal = i.LineTotal;
                     purchaseline.IdPurchase = purchase.IdPurchase;
